@@ -59,14 +59,23 @@ def trailing_stop(volume, trailing, order, pair, leverage = 'none'):
 				return info
 
 
+def start_trailing(start_price, volume, trailing, order, pair, leverage = 'none'):
 
+	logger.info("StartPrice = {}, Volume = {}, Trailing = {}, Order = {}, Pair = {}, Leverage = {}".format(start_price, volume, trailing, order, pair, leverage))
 
+	while True:
 
-while True:
-	price = private.get_price('XETHZUSD')
-	if(price > 205):
-		trailing_stop(1, 0.75, 'sell','XETHZUSD',5)
-	time.sleep(5)
+		price = private.get_price(pair)
+		
+		if(order == 'buy'):
+			if(price < start_price):
+				return trailing_stop(volume, trailing, order, pair, leverage)
+
+		if(order == 'sell'):
+			if(price > start_price):
+				return trailing_stop(volume, trailing, order, pair, leverage)
+
+		time.sleep(5)
 
 
 
