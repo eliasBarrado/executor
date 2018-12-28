@@ -4,7 +4,7 @@ from model import Ticker
 from model import Strategie
 
 config = configparser.ConfigParser()
-config.read('../config.txt')
+config.read('config.txt')
 
 client = datastore.Client(project=config['project']['id'])
 

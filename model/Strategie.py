@@ -6,7 +6,7 @@ import krakenex
 import configparser
 
 config = configparser.ConfigParser()
-config.read('../config.txt')
+config.read('config.txt')
 
 k = krakenex.api.API(config['executor']['key'], config['executor']['secret'])
 
